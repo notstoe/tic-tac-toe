@@ -1,4 +1,4 @@
-# small library
+# tic-tac-toe
 [Odin] Tic-tac-toe game playable in the browser
 
 <!-- > See it live on [](*under construction*) -->
