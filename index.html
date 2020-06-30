@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> &#10060; &#11093; Tic-Tac-Toe</title>
-
     <link rel="stylesheet" href="styles/style.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
-
 </head>
 
 <main>
-    <header>
-        
+    <header>  
         <h1 class="pageTitle">Tic-Tac-Toe</h1>
-        
     </header>
     
     <body>
+        <div class="pageContent">
+            <div class="displayScore">
+                <div class="names">
+                    <p id="name1">Player 1</p>
+                    <p id="name2">Player 2</p>
+                </div>
+                
+                <div class="scores">
+                    <p id="score1">0</p>
+                    <p id="score2">0</p>
+                </div>
+            </div>
 
-        <div class="containerBoard">
-            <div class="playableSquare" id="square0">X</div>
-            <div class="playableSquare" id="square1">X</div>
-            <div class="playableSquare" id="square2">X</div>
-            <div class="playableSquare" id="square3">O</div>
-            <div class="playableSquare" id="square4">O</div>
-            <div class="playableSquare" id="square5">X</div>
-            <div class="playableSquare" id="square6">O</div>
-            <div class="playableSquare" id="square7">O</div>
-            <div class="playableSquare" id="square8">O</div>
+            <div class="containerBoard">
+                <div class="playableSquare" id="square0">X</div>
+                <div class="playableSquare" id="square1">O</div>
+                <div class="playableSquare" id="square2">X</div>
+                <div class="playableSquare" id="square3">O</div>
+                <div class="playableSquare" id="square4">O</div>
+                <div class="playableSquare" id="square5">X</div>
+                <div class="playableSquare" id="square6">O</div>
+                <div class="playableSquare" id="square7">O</div>
+                <div class="playableSquare" id="square8">O</div>
+            </div>       
         </div>
-    
         <script src="scripts/main.js"></script>
     </body>
 
