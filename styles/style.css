@@ -80,6 +80,7 @@ html {
     color: var(--game-element-color);
     text-align: center;   
     line-height: 13.7vw;
+    cursor: pointer;
 }
 
 #square0 {
