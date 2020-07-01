@@ -7,6 +7,7 @@ const createPlayer = function (name) {
     return {name, incrementScore, getScore};
 };
 
+// GAME HANDLING
 
 const gameBoard = (function () {
     
@@ -38,7 +39,7 @@ const gameBoard = (function () {
         function updatePlaysBoard(reference) {
             
             if (reference <= 2) {
-                playsBoard[0][reference%3] = e.target.textContent;
+                playsBoard[0][reference%3] = e.target.textContent;                                  //ties #number on sq id to position on array
 
             } else if (reference <= 5) {
                 playsBoard[1][reference%3] = e.target.textContent;
@@ -46,13 +47,17 @@ const gameBoard = (function () {
             } else {                                                                                //comes here if its 6, 7 or 8
                 playsBoard[2][reference%3] = e.target.textContent;
             }
-            console.log(isGameOver());
+            // TODO - Add isGameOver() check and call to a resetBoard() function
         }
 
         });
     });
 
     function isGameOver() {
+
+        // TODO - Add to ifs who won -> X(player1) or O(player2) - return Object with gameover condition and winner
+
+        if (turnCounter == 9) return true;
 
         nextLine: for (let i = 0; i <= 2; i++) {                                                              
             for (let j = 0; j <= 2; j++){
