@@ -21,11 +21,11 @@ const displayController = (function (){
     const scorePlayer1 = document.querySelector('#score1');
     const scorePlayer2 = document.querySelector('#score2');
 
-    function updateScore(player) {
+    function updateScore(player, score) {
         
-        if (player == 1) scorePlayer1.textContent = Number(scorePlayer1.textContent) + 1;
+        if (player == 1) scorePlayer1.textContent = score;
         
-        if (player == 2) scorePlayer2.textContent = Number(scorePlayer2.textContent) + 1;
+        if (player == 2) scorePlayer2.textContent = score;
     }
 
     function resetScore(){
@@ -48,7 +48,7 @@ const gameBoard = (function () {
                              
     let getPlayer1 = document.querySelector('#name1');                                      //default Players
     let getPlayer2 = document.querySelector('#name2');
-    let player1 = createPlayer(getPlayer1.textContent);
+    let player1 = createPlayer(getPlayer1.textContent);                         //TODO - change into an array of players
     let player2 = createPlayer(getPlayer2.textContent);                            
                       
     const playableSqs = document.querySelectorAll('.playableSquare');
@@ -157,10 +157,10 @@ const gameBoard = (function () {
             
             switch (champion) {
                 case 1:
-                    
+
                     alert(`${player1.getName()} is the winner!`)
                     player1.incrementScore();
-                    displayController.updateScore(champion);
+                    displayController.updateScore(champion, player1.getScore());
                     
                 break;
                 
@@ -168,25 +168,26 @@ const gameBoard = (function () {
 
                     alert(`${player2.getName()} is the winner!`)
                     player2.incrementScore();
-                    displayController.updateScore(champion);
+                    displayController.updateScore(champion, player2.getScore());
 
                 break;
                 
                 case 0:
+
                     alert('Its a tie on this round!');
+
                 break;
                     
                 case -1:                                                        //case for when clicked on the button, resets everything
-                
+                    
                     player1 = createPlayer(getPlayer1.textContent);
                     player2 = createPlayer(getPlayer2.textContent);
+                    displayController.resetScore();
                 
                 break;
             }
-
-            // return {player1, player2};
         }
     }
 
 })(); 
-// module must return resetBoard to call for a button later
+// TODO - gameBoard module must return resetBoard to call for a button later
