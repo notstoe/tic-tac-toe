@@ -1,14 +1,41 @@
+//PLAYER FACTORY
+
 const createPlayer = function (name) { 
     
-    let score = 0;
-    let won = false;                                                               //loser by default... harsh
+    let score = 0;                                                               
     const incrementScore = () => ++score;
     const getScore = () => score;
-    const makeChampion = () => won = true;
-    const isWinner = () => won;
+    const getName = () => name;
 
-    return {name, incrementScore, getScore, isWinner, makeChampion};
+    return {getName, incrementScore, getScore};
 };
+
+// BUTTONS AND CREATING PLAYERS
+
+    // TODO - ADD LISTENERS FOR CHANGING PLAYERS AND RESETTING BOARD BUTTON
+
+// DISPLAY HANDLING
+
+const displayController = (function (){
+
+    const scorePlayer1 = document.querySelector('#score1');
+    const scorePlayer2 = document.querySelector('#score2');
+
+    function updateScore(player) {
+        
+        if (player == 1) scorePlayer1.textContent = Number(scorePlayer1.textContent) + 1;
+        
+        if (player == 2) scorePlayer2.textContent = Number(scorePlayer2.textContent) + 1;
+    }
+
+    function resetScore(){
+        scorePlayer1.textContent = '0';
+        scorePlayer2.textContent = '0';
+    }
+
+    return {updateScore, resetScore};
+
+})();
 
 // GAME HANDLING
 
@@ -18,7 +45,12 @@ const gameBoard = (function () {
     let playsBoard = [['','',''],                                                  // represents game board - x x x
                       ['','',''],                                                  //                         x x x
                       ['','','']];                                                 //                         x x x
-                                                                                                       
+                             
+    let getPlayer1 = document.querySelector('#name1');                                      //default Players
+    let getPlayer2 = document.querySelector('#name2');
+    let player1 = createPlayer(getPlayer1.textContent);
+    let player2 = createPlayer(getPlayer2.textContent);                            
+                      
     const playableSqs = document.querySelectorAll('.playableSquare');
     playableSqs.forEach(playableSq => { playableSq.addEventListener('click', (e) => {
         
@@ -51,9 +83,8 @@ const gameBoard = (function () {
                 playsBoard[2][reference%3] = e.target.textContent;
             }
 
-            const gameOverCondition = isGameOver();
-            console.log(gameOverCondition.gameOver, gameOverCondition.winner);
-            // TODO - Add isGameOver() check and call to a resetBoard() function
+            let checkGameOver = isGameOver();
+            resetBoard(checkGameOver.winner, checkGameOver.gameOver);
         }
 
         });
@@ -62,13 +93,9 @@ const gameBoard = (function () {
     function isGameOver() {
 
         let gameOver;
-        let winner;                                                                                                         //player1 is always X
+        let winner;                                                                                                         //player1 is always X (1, 2, 0 - tie, -1 - not over yet)
 
-        if (turnCounter == 9) {                                                                                             //tie condition
-            gameOver = true;
-            winner = 0;
-            return {winner, gameOver};
-        }                                                                                  
+        if (turnCounter == 9) return {winner: 0, gameOver: true};                                                           //tie condition 
 
         nextLine: for (let i = 0; i <= 2; i++) {                                                              
             for (let j = 0; j <= 2; j++){
@@ -117,7 +144,49 @@ const gameBoard = (function () {
         return {winner: -1, gameOver: false};                                                                               //if all checks on the loop failed, game not over and no winner yet, hence -1
     }
 
-    // function resetBoard(){}
+    function resetBoard(champion, gameState){
+        
+        if (gameState){
+            
+            turnCounter = 0;
+            playsBoard = [['','',''],                                                  
+                          ['','',''],                                                  
+                          ['','','']];
+
+            playableSqs.forEach(playableSq => playableSq.textContent = '');
+            
+            switch (champion) {
+                case 1:
+                    
+                    alert(`${player1.getName()} is the winner!`)
+                    player1.incrementScore();
+                    displayController.updateScore(champion);
+                    
+                break;
+                
+                case 2:
+
+                    alert(`${player2.getName()} is the winner!`)
+                    player2.incrementScore();
+                    displayController.updateScore(champion);
+
+                break;
+                
+                case 0:
+                    alert('Its a tie on this round!');
+                break;
+                    
+                case -1:                                                        //case for when clicked on the button, resets everything
+                
+                    player1 = createPlayer(getPlayer1.textContent);
+                    player2 = createPlayer(getPlayer2.textContent);
+                
+                break;
+            }
+
+            // return {player1, player2};
+        }
+    }
 
 })(); 
 // module must return resetBoard to call for a button later
