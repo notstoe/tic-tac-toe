@@ -12,13 +12,29 @@ const createPlayer = function (name) {
 
 // BUTTONS HANDLING
 
-    // TODO - ADD LISTENERS FOR CHANGING PLAYERS AND RESETTING BOARD BUTTON
+const buttonsController = (function(){
 
-// const buttonsController = (function(){
+    const actionBtns = document.querySelectorAll('.actionButton');
 
-//     const btnResetBoard = document.querySelector('')
+    actionBtns.forEach((btn) => { btn.addEventListener('click', (e) => {
 
-// })();
+            switch (e.target.id) {
+                case 'changePlayers':
+
+                    // TODO - add modal with inputs to change players
+
+                break;
+            
+                case 'resetGame':
+
+                    gameBoard.resetBoard(-1, true);
+
+                break;
+            }
+        });
+    });
+
+})();
 
 // DISPLAY HANDLING
 
@@ -172,20 +188,20 @@ const gameBoard = (function () {
                 break;
                 
                 case 0:
-                    alert('Its a tie on this round!');
+                    alert('It\'s a tie on this round!');
 
                 break;
                     
-                case -1:                                                        //case for when clicked on the button, resets everything
+                case -1:                                                                                                   //case for when clicked on the button, resets everything
                     
-                    player1 = createPlayer(getPlayer1.textContent);
-                    player2 = createPlayer(getPlayer2.textContent);
-                    displayController.resetScore();
+                player = [createPlayer(selectPlayer1.textContent), createPlayer(selectPlayer2.textContent)];               //creating brand new players, which means 0 score on objects and new names
+                displayController.resetScore();
                 
                 break;
             }
         }
     }
 
+    return {resetBoard};
+
 })(); 
-// TODO - gameBoard module must return resetBoard to call for a button later
