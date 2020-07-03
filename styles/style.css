@@ -16,6 +16,13 @@
     .pageTitle {
         color: var(--main-element-color);
         text-align: center;
+        font-family: 'Itim', cursive;
+        font-size: 40px;
+    }
+
+    .redTxt {
+        color: var(--game-element-color);
+        font-family: 'Raleway', sans-serif;
     }
 
 /* BODY */
