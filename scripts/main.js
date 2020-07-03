@@ -10,9 +10,15 @@ const createPlayer = function (name) {
     return {getName, incrementScore, getScore};
 };
 
-// BUTTONS AND CREATING PLAYERS
+// BUTTONS HANDLING
 
     // TODO - ADD LISTENERS FOR CHANGING PLAYERS AND RESETTING BOARD BUTTON
+
+// const buttonsController = (function(){
+
+//     const btnResetBoard = document.querySelector('')
+
+// })();
 
 // DISPLAY HANDLING
 
@@ -42,19 +48,18 @@ const displayController = (function (){
 const gameBoard = (function () {
     
     let turnCounter = 0;
-    let playsBoard = [['','',''],                                                  // represents game board - x x x
-                      ['','',''],                                                  //                         x x x
-                      ['','','']];                                                 //                         x x x
+    let playsBoard = [['','',''],                                                              // represents game board - x x x
+                      ['','',''],                                                              //                         o x o
+                      ['','','']];                                                             //                         x o o
                              
-    let getPlayer1 = document.querySelector('#name1');                                      //default Players
-    let getPlayer2 = document.querySelector('#name2');
-    let player1 = createPlayer(getPlayer1.textContent);                         //TODO - change into an array of players
-    let player2 = createPlayer(getPlayer2.textContent);                            
+    let selectPlayer1 = document.querySelector('#name1');                                      //default Players
+    let selectPlayer2 = document.querySelector('#name2');
+    let player = [createPlayer(selectPlayer1.textContent), createPlayer(selectPlayer2.textContent)];
                       
     const playableSqs = document.querySelectorAll('.playableSquare');
     playableSqs.forEach(playableSq => { playableSq.addEventListener('click', (e) => {
         
-        if (!e.target.textContent) {                                                        //prevents from playing in an already played spot
+        if (!e.target.textContent) {                                                            //prevents from playing in an already played spot
             if (turnCounter%2 == 0) {
                 
                 e.target.textContent = 'X';
@@ -158,23 +163,15 @@ const gameBoard = (function () {
             
             switch (champion) {
                 case 1:
+                case 2:
 
-                    alert(`${player1.getName()} is the winner!`)
-                    player1.incrementScore();
-                    displayController.updateScore(champion, player1.getScore());
+                    alert(`${player[champion-1].getName()} is the winner!`)
+                    player[champion-1].incrementScore();
+                    displayController.updateScore(champion, player[champion-1].getScore());
                     
                 break;
                 
-                case 2:
-
-                    alert(`${player2.getName()} is the winner!`)
-                    player2.incrementScore();
-                    displayController.updateScore(champion, player2.getScore());
-
-                break;
-                
                 case 0:
-
                     alert('Its a tie on this round!');
 
                 break;
