@@ -205,3 +205,5 @@ const gameBoard = (function () {
     return {resetBoard};
 
 })(); 
+
+// TODO - add playing against AI - invencible AI maybe
