@@ -95,8 +95,6 @@ const gameBoard = (function () {
         let gameOver;
         let winner;                                                                                                         //player1 is always X (1, 2, 0 - tie, -1 - not over yet)
 
-        if (turnCounter == 9) return {winner: 0, gameOver: true};                                                           //tie condition 
-
         nextLine: for (let i = 0; i <= 2; i++) {                                                              
             for (let j = 0; j <= 2; j++){
                 
@@ -137,6 +135,9 @@ const gameBoard = (function () {
                     return {winner, gameOver};
 
                 } else {
+                   
+                    if (turnCounter == 9) return {winner: 0, gameOver: true};                                               //tie condition 
+
                     continue nextLine;
                 }
             }
