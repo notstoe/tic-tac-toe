@@ -44,16 +44,17 @@ const buttonsController = (function(){
         const inputNames = document.querySelectorAll('.playersInput');
         const modalBtns = document.querySelectorAll('.modalBtn');
         
-        spanClose.addEventListener('click', () => modal.style.display = "none");                                //x closes it
-        window.addEventListener('click', (e) => {if(e.target == modal) modal.style.display = "none"});          //clicking outside the modal, closes it
+        spanClose.addEventListener('click', () => modal.style.display = "none");                                //x closes the modal
+        window.addEventListener('click', (e) => {if(e.target == modal) modal.style.display = "none"});          //clicking outside also
         modalBtns.forEach((btn) => { btn.addEventListener('click', (e) => {
             
             switch (e.target.id) {
                 case 'applyBtn':
                     
-                    selectPlayer1.textContent = inputNames[0].value;
-                    selectPlayer2.textContent = inputNames[1].value;
-                    gameBoard.resetBoard(-1, true, [inputNames[0].value, inputNames[1].value]);                
+                    if (inputNames[0].value.length != 0) selectPlayer1.textContent = inputNames[0].value;                   //doesnt change if input value is empty
+                    if (inputNames[1].value.length != 0) selectPlayer2.textContent = inputNames[1].value;
+
+                    gameBoard.resetBoard(-1, true, [selectPlayer1.textContent, selectPlayer2.textContent]);                
                     modal.style.display = "none";
 
                 break;
