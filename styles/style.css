@@ -208,13 +208,13 @@
     }
     
     /* Modal Content/Box */
-    .modal-content {
+    .modalContent {
         background-color: var(--main-element-color);
         margin: 10% auto; /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
         position: relative;
-        width: 30vw; /* Could be more or less, depending on screen size */
+        width: 30vw;
         height: 60vh;
         opacity: 90%;
         border-radius: 7px;
