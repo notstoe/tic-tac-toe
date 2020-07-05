@@ -13,7 +13,35 @@
 
 /* HEADER */
 
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 7px;
+    }
+    
+    #github{
+        width: 50px;
+        margin-left: 4px;
+    }
+    
+    #help {
+        margin-right: 10px;
+        margin-top: -5px;
+        font-size: 19px;
+        text-decoration: none;
+        color: var(--main-element-color);
+    }
+    #help:hover {
+        color: var(--game-element-color);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+/* TITLE */
+
     .pageTitle {
+        margin-top: -1vw;
         color: var(--main-element-color);
         text-align: center;
         font-family: 'Tajawal', sans-serif;
@@ -250,5 +278,3 @@
         background-color: var(--main-bg-color);
         color: var(--main-element-color);
     }
-
-    

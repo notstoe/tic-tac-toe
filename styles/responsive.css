@@ -1,0 +1,42 @@
+@media (max-width: 500px) {
+    
+    #github {
+        width: 40px;
+    }
+    #help {
+        font-size: 16px;
+    }
+    
+    .pageTitle {
+        font-size: 30px;
+    }
+    
+    .displayScore {
+        width: 70vw;
+        height: 10vh;
+    }
+    
+    .names {
+        font-size: 4.5vw;
+    }
+    
+    .scores {
+        font-size: 5vw;
+    }
+    
+    .actionButton {
+        margin: 2.5vw 6.5vw;
+        padding: 1.5vw 5.5vw
+    }
+    
+    .containerBoard {
+        margin: 10vw auto;
+        width: 84vw;
+        height: 84vw;
+    }
+    
+    .playableSquare {
+        font-size: 14.8vw;
+        line-height: 27vw;
+    }
+}
