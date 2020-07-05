@@ -14,14 +14,21 @@ const createPlayer = function (name) {
 
 const buttonsController = (function(){
 
+    
+    // LISTENERS FOR MODAL HANDLING
+        const modal = document.querySelector('.changePlayersModal');                            
+        const spanClose = document.querySelector('#close');
+        spanClose.addEventListener('click', () => modal.style.display = "none");
+        window.addEventListener('click', (e) => {if(e.target == modal) modal.style.display = "none"});          //clicking outside the modal, closes it
+        
     const actionBtns = document.querySelectorAll('.actionButton');
-
-    actionBtns.forEach((btn) => { btn.addEventListener('click', (e) => {
+        
+        actionBtns.forEach((btn) => { btn.addEventListener('click', (e) => {
 
             switch (e.target.id) {
                 case 'changePlayers':
 
-                    // TODO - add modal with inputs to change players
+                    modal.style.display = "block";
 
                 break;
             
@@ -207,3 +214,4 @@ const gameBoard = (function () {
 })(); 
 
 // TODO - add playing against AI - invencible AI maybe
+
