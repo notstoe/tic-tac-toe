@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> &#10060; Tic-Tac-Toe</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&family=Itim&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&family=Tajawal:wght@400;500&display=swap" rel="stylesheet">   
      
 </head>
 
@@ -33,7 +33,29 @@
                 <button class="actionButton" id="resetGame">Reset Game</button>
             </div>
 
-            <!-- TODO - add modal for changing players here -->
+            <!-- The Modal -->                                          
+            <div class="changePlayersModal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span id="close">&times;</span>
+                    <h1 id="modalTitle">Change Players</h1>
+
+                    <div class="playerNames">
+                        <label for="player1">Player 1 ( <span class="redTxt">X</span> ):</label>
+                        <input type="text" name="player1" id="player1" class="playersInput">
+                        <label for="player2">Player 2 ( <span class="redTxt">O</span> ):</label>
+                        <input type="text" name="player2" id="player2" class="playersInput">
+                    </div>
+
+                    <div class="btnsModalContainer">
+                        <button class="modalBtn" id="submitBtn">Apply</button>
+                        <button class="modalBtn" id="cancelBtn">Cancel</button>
+                    </div>
+
+                </div>
+
+            </div> 
 
             <div class="containerBoard">
                 <div class="playableSquare" id="square0"></div>
