@@ -5,7 +5,7 @@
 
 # objectives
 The main objectives of this project are to:
-- Get into the habit of using _Modular Pattern_ and _Factory Functions_
+- Get into the habit of using _Modular Pattern_ and _Factory Functions_ on Javascript
 - Apply and further develop programming logic in Javascript
 - Original, simple design of a static landing page
 
