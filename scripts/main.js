@@ -12,34 +12,60 @@ const createPlayer = function (name) {
 
 // BUTTONS HANDLING
 
-const buttonsController = (function(){
-
+const buttonsController = (function(){ 
     
-    // LISTENERS FOR MODAL HANDLING
+    let selectPlayer1 = document.querySelector('#name1');                                      
+    let selectPlayer2 = document.querySelector('#name2');
+
+    const actionBtns = document.querySelectorAll('.actionButton');
+    
+    actionBtns.forEach((btn) => { btn.addEventListener('click', (e) => {
+        
+        switch (e.target.id) {
+            case 'changePlayers':
+        
+                modal.style.display = "block";                 
+            
+            break;
+            
+            case 'resetGame':
+                
+                gameBoard.resetBoard(-1, true, [selectPlayer1.textContent, selectPlayer2.textContent]);
+                
+            break;
+        }
+        });
+    });
+        
+    // LOGIC FOR MODAL HANDLING
+        
         const modal = document.querySelector('.changePlayersModal');                            
         const spanClose = document.querySelector('#close');
-        spanClose.addEventListener('click', () => modal.style.display = "none");
+        const inputNames = document.querySelectorAll('.playersInput');
+        const modalBtns = document.querySelectorAll('.modalBtn');
+        
+        spanClose.addEventListener('click', () => modal.style.display = "none");                                //x closes it
         window.addEventListener('click', (e) => {if(e.target == modal) modal.style.display = "none"});          //clicking outside the modal, closes it
-        
-    const actionBtns = document.querySelectorAll('.actionButton');
-        
-        actionBtns.forEach((btn) => { btn.addEventListener('click', (e) => {
-
+        modalBtns.forEach((btn) => { btn.addEventListener('click', (e) => {
+            
             switch (e.target.id) {
-                case 'changePlayers':
-
-                    modal.style.display = "block";
+                case 'applyBtn':
+                    
+                    selectPlayer1.textContent = inputNames[0].value;
+                    selectPlayer2.textContent = inputNames[1].value;
+                    gameBoard.resetBoard(-1, true, [inputNames[0].value, inputNames[1].value]);                
+                    modal.style.display = "none";
 
                 break;
             
-                case 'resetGame':
+                case 'cancelBtn':
 
-                    gameBoard.resetBoard(-1, true);
+                    modal.style.display = "none";
 
                 break;
             }
+            });
         });
-    });
 
 })();
 
@@ -75,9 +101,7 @@ const gameBoard = (function () {
                       ['','',''],                                                              //                         o x o
                       ['','','']];                                                             //                         x o o
                              
-    let selectPlayer1 = document.querySelector('#name1');                                      //default Players
-    let selectPlayer2 = document.querySelector('#name2');
-    let player = [createPlayer(selectPlayer1.textContent), createPlayer(selectPlayer2.textContent)];
+    let player = [createPlayer('Player 1'), createPlayer('Player 2')];                           //default Players
                       
     const playableSqs = document.querySelectorAll('.playableSquare');
     playableSqs.forEach(playableSq => { playableSq.addEventListener('click', (e) => {
@@ -173,7 +197,7 @@ const gameBoard = (function () {
         return {winner: -1, gameOver: false};                                                                               //if all checks on the loop failed, game not over and no winner yet, hence -1
     }
 
-    function resetBoard(champion, gameState){
+    function resetBoard(champion, gameState, playersNames){                                         //playersNames is an optional parameter
         
         if (gameState){
             
@@ -199,9 +223,9 @@ const gameBoard = (function () {
 
                 break;
                     
-                case -1:                                                                                                   //case for when clicked on the button, resets everything
+                case -1:                                                                                              //case for when clicked on the button, resets everything
                     
-                player = [createPlayer(selectPlayer1.textContent), createPlayer(selectPlayer2.textContent)];               //creating brand new players, which means 0 score on objects and new names
+                player = [createPlayer(playersNames[0]), createPlayer(playersNames[1])];                                    //creating brand new players, which means 0 score on objects and new names
                 displayController.resetScore();
                 
                 break;
