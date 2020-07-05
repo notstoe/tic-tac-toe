@@ -1,7 +1,7 @@
 # tic-tac-toe
 [Odin] Tic-tac-toe game playable in the browser
 
-> See it live on [notstoe.github.io/tic-tac-toe](notstoe.github.io/tic-tac-toe)
+> See it live on [notstoe.github.io/tic-tac-toe](https://notstoe.github.io/tic-tac-toe/)
 
 # objectives
 The main objectives of this project are to:
